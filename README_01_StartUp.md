@@ -1,9 +1,51 @@
-# Urlaub Buchungssystem
+# Startup project
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+## Vaadin
 
-## Running the application
+Vaadin ist ein Java-Framework für die Entwicklung von modernen Webanwendungen.
+Es erlaubt dir, mit Java (oder Kotlin) vollständige UI-Anwendungen zu bauen, ohne dass du dich direkt mit HTML, CSS oder JavaScript beschäftigen musst.
+
+Server-Side UI Framework
+- Die gesamte UI-Logik läuft auf dem Server (Java).
+- Der Browser zeigt nur die gerenderte Oberfläche an, die Vaadin automatisch per WebSocket/HTTP aktualisiert.
+
+Komponentenbasiert
+- Du baust die Oberfläche mit fertigen Komponenten wie TextField, Grid, Button, DatePicker, usw. – ähnlich wie bei Swing/JavaFX, aber fürs Web.
+
+Routing
+- Jede View (Seite) ist eine Java-Klasse.
+- Über @Route("zug") definierst du, unter welcher URL sie erreichbar ist.
+
+Binder & Validation
+- Mit Binder kannst du deine Formularfelder direkt an Java-Objekte (DTOs, Entities) binden.
+- Unterstützt Bean Validation (@NotNull, @Min, @Pattern …).
+
+Integration
+- Funktioniert nahtlos mit Spring Boot.
+- Kann auch standalone in einem Servlet-Container laufen (z. B. Tomcat, Jetty).
+
+Modi
+- Vaadin Flow: klassisches serverseitiges Java → UI wird automatisch gerendert.
+- Vaadin Fusion (heißt jetzt Hilla): Kombination aus Java Backend + TypeScript Frontend.
+
+## Create the application
+
+https://start.vaadin.com/app?continue
+
+<br/>Mit start playing gelangt man in den design mode
+<br/><img src="picture/01_001.png" width=50%>
+<br/>Man muss dann die views definieren. Es können später auch im IntelliJ views hinzugefügt werden!
+<br/><img src="picture/01_002.png" width=50%>
+<br/>Mit download wird dann das Projekt heruntergeladen.
+<br/><img src="picture/01_003.png" width=50%>
+<br/>Nach dem Extrahieren wird daraus ein IntelliJ Projekt.
+<br/><img src="picture/01_004.png" width=50%>
+<br/>Das Projekt dann öffnen und mit mvwn ausführen.
+<br/><img src="picture/01_005.png" width=50%>
+<br/>Es öffnet sich der browser und das Projekt wird ausgeführt.
+<br/><img src="picture/01_006.png" width=50%>
+
+# Layout
 
 Open the project in an IDE. You can download the [IntelliJ community edition](https://www.jetbrains.com/idea/download) if you do not have a suitable IDE already.
 Once opened in the IDE, locate the `Application` class and run the main method using "Debug".
@@ -25,7 +67,7 @@ If you have Maven globally installed, you can replace `./mvnw` with `mvn`.
 This will build a JAR file with all the dependencies and front-end resources,ready to be run. The file can be found in the `target` folder after the build completes.
 You then launch the application using 
 ```
-java -jar target/urlaub-1.0-SNAPSHOT.jar
+java -jar target/vaadinholiday-1.0-SNAPSHOT.jar
 ```
 
 ## Project structure
