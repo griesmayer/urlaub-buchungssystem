@@ -1,16 +1,19 @@
 package at.spengergasse.urlaub.views.urlaube;
 
+import at.spengergasse.urlaub.Exception.UrlaubException;
 import at.spengergasse.urlaub.domain.Urlaub;
 import at.spengergasse.urlaub.service.UrlaubService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
@@ -23,6 +26,8 @@ public class UrlaubView extends VerticalLayout {
 
     private Button buttonLoscheAlle;
     private Button buttonAdd10;
+    private Button buttonLoscheStadt;
+    private Button buttonLoscheNix;
 
     public UrlaubView(@Autowired UrlaubService urlaubService) {
         this.urlaubService = urlaubService;
@@ -43,9 +48,25 @@ public class UrlaubView extends VerticalLayout {
         buttonLoscheAlle = new Button("Lösche ALLE Urlaube", buttonClickEvent -> loscheAlle());
         buttonAdd10 = new Button("Füge 10 Urlaube hinzu", buttonClickEvent -> add10());
 
+        buttonLoscheStadt = new Button("Lösche ALLE Stadt Urlaube", buttonClickEvent -> loscheUrlaubArt("Stadt"));
+        buttonLoscheNix   = new Button("Lösche ALLE NIX Urlaube",   buttonClickEvent -> loscheUrlaubArt("NIX"));
+
         grid.setSizeFull();
-        add(new HorizontalLayout(buttonLoscheAlle, buttonAdd10), grid);
+        add(new HorizontalLayout(buttonAdd10, buttonLoscheAlle, buttonLoscheStadt, buttonLoscheNix), grid);
         reload();
+    }
+
+    private void loscheUrlaubArt(String urlaubsArt) {
+        try {
+            urlaubService.loscheUrlaubArt(urlaubsArt);
+            reload();
+        }
+        catch (UrlaubException e) {
+            Notification.show(e.getMessage());
+        }
+        catch (Exception e) {
+            Notification.show(e.getMessage());
+        }
     }
 
     private void add10() {

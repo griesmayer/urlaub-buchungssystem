@@ -1,10 +1,12 @@
 package at.spengergasse.urlaub.service;
 
+import at.spengergasse.urlaub.Exception.UrlaubException;
 import at.spengergasse.urlaub.domain.Urlaub;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 @Service
 public class UrlaubService {
@@ -49,6 +51,26 @@ public class UrlaubService {
 
     public void loscheAlle() {
         data.removeAll(data);
+    }
+
+    public void loscheUrlaubArt(String urlaubsArt) {
+        Urlaub u;
+        Iterator<Urlaub> it;
+        int anz;
+
+        if (urlaubsArt == null)
+            throw new UrlaubException("Fehler: keine gültige Urlaubsart!");
+        anz = 0;
+        it = data.iterator();
+        while (it.hasNext()) {
+            u = it.next();
+            if (u.getUrlaubArt().equals(urlaubsArt)) {
+                it.remove();
+                anz++;
+            }
+        }
+        if (anz == 0)
+            throw new UrlaubException("Fehler: konnte keine Daten löschen!");
     }
 }
 
