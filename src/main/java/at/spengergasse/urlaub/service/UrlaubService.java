@@ -31,6 +31,11 @@ public class UrlaubService {
         }
     }
 
+    public ArrayList<Urlaub> findAll (){
+        ArrayList<Urlaub> copy = new ArrayList<Urlaub>(data);
+        return copy;
+    }
+
     @Override
     public String toString() {
         String erg;
@@ -40,6 +45,10 @@ public class UrlaubService {
             erg += u.toString()+"\n";
         }
         return erg;
+    }
+
+    public void loscheAlle() {
+        data.removeAll(data);
     }
 }
 
