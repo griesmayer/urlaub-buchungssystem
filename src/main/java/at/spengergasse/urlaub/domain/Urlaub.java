@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Setter
 @ToString
 public class Urlaub {
+    public  static final String[] URLAUBART = {"Strand", "Stadt", "Rundreise", "Shopping", "Safari"};
     private static final AtomicLong sequence = new AtomicLong(1000);
     @Id
     private Long urlaubId;
