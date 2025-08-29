@@ -92,6 +92,10 @@ public class UrlaubService {
         if (gefunden == false)
             throw new UrlaubException("Fehler: Urlaub mit der ID " + urlaubId + " nicht gefunden!");
     }
+
+    public void save(Urlaub urlaub) {
+        data.add(urlaub);
+    }
 }
 
 
