@@ -2,7 +2,10 @@ package at.spengergasse.urlaub.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,9 +24,13 @@ public class Urlaub {
     private Long urlaubId;
 
     @NotNull(message = "Das Land muss angegeben werden!")
+    @NotEmpty(message = "Das Land muss angegeben werden!")
     private String  land;
+    @Pattern(regexp = "[A-Z][A-Za-z ]+", message = "Der Ort muss mind. 2 Zeichen haben")
     private String  ort;
     private Boolean allInclusive;
+    @Min(value = 300, message = "Der Preis muss mind. 300 Euro betragen!")
+    @Max(value = 3000, message = "Der Preis darf max. 3000 Euro betragen!")
     private Double  preisPerson;
     private String  urlaubArt;
 
