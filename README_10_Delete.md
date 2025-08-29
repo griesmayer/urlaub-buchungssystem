@@ -1,6 +1,6 @@
 # Löschen
 
-<img src="picture/10_001.png" width=30%>
+<img src="picture/10_001.png" width=50%>
 
 Löscht den Datensatz aus der Collection.
 

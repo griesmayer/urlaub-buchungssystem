@@ -72,6 +72,26 @@ public class UrlaubService {
         if (anz == 0)
             throw new UrlaubException("Fehler: konnte keine Daten löschen!");
     }
+
+    public void loscheUrlaub(Long urlaubId) {
+        boolean gefunden;
+        Urlaub u;
+        Iterator<Urlaub> it;
+
+        if (urlaubId == null)
+            throw new UrlaubException("Fehler: keine UrlaubsID angegeben!");
+        gefunden = false;
+        it = data.iterator();
+        while (it.hasNext()) {
+            u = it.next();
+            if (u.getUrlaubId().equals(urlaubId)) {
+                it.remove();
+                gefunden = true;
+            }
+        }
+        if (gefunden == false)
+            throw new UrlaubException("Fehler: Urlaub mit der ID " + urlaubId + " nicht gefunden!");
+    }
 }
 
 

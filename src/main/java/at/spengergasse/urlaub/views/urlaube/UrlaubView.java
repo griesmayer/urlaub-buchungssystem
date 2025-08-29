@@ -99,9 +99,35 @@ public class UrlaubView extends VerticalLayout {
                 .setHeader("Urlaubs Art")
                 .setSortable(true);
 
+        grid.addComponentColumn(new ValueProvider<Urlaub, Component>() {
+            @Override
+            public Component apply(Urlaub urlaub) {
+                Button loschen;
+                loschen = new Button("Löschen", event -> loschenZeile(urlaub.getUrlaubId()));
+                return loschen;
+            }
+        })
+                .setHeader("Tasks")
+                .setSortable(false);
+
         grid.setSizeFull();
         add(new HorizontalLayout(buttonAdd10, buttonLoscheAlle, buttonLoscheStadt, buttonLoscheNix), grid);
         reload();
+    }
+
+    private void loschenZeile(Long urlaubId) {
+        //Notification.show("Lösche " + urlaubId);
+        try {
+            urlaubService.loscheUrlaub(urlaubId);
+            reload();
+            Notification.show("Der Urlaub " + urlaubId + " wurde gelöscht!");
+        }
+        catch (UrlaubException e) {
+            Notification.show(e.getMessage());
+        }
+        catch (Exception e) {
+            Notification.show(e.getMessage());
+        }
     }
 
     private void loscheUrlaubArt(String urlaubsArt) {
