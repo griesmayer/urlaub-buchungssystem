@@ -2,8 +2,6 @@
 
 <img src="picture/09_001.png" width=30%>
 
-## Exception
-
 ```
     private final Grid<Urlaub> grid = new Grid<>(Urlaub.class, false);
 ```

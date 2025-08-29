@@ -2,6 +2,7 @@ package at.spengergasse.urlaub.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,7 @@ public class Urlaub {
     @Id
     private Long urlaubId;
 
+    @NotNull(message = "Das Land muss angegeben werden!")
     private String  land;
     private String  ort;
     private Boolean allInclusive;
